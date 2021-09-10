@@ -6,30 +6,30 @@ import androidx.activity.viewModels
 import com.caglacetin.lorempicsum.common.Resource
 import com.caglacetin.lorempicsum.common.observe
 import com.caglacetin.lorempicsum.data.response.Images
-import com.caglacetin.lorempicsum.databinding.ActivityMainBinding
+import com.caglacetin.lorempicsum.databinding.ActivityImageListBinding
 import com.caglacetin.lorempicsum.ui.base.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : BaseActivity() {
+class ImageListActivity : BaseActivity() {
 
-  private lateinit var binding: ActivityMainBinding
+  private lateinit var binding: ActivityImageListBinding
 
-  private val mainViewModel: MainViewModel by viewModels()
+  private val listViewModel: ImageListViewModel by viewModels()
 
   override fun initViewBinding() {
-    binding = ActivityMainBinding.inflate(layoutInflater)
+    binding = ActivityImageListBinding.inflate(layoutInflater)
     val view = binding.root
     setContentView(view)
   }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    mainViewModel.getImages()
+    listViewModel.getImages()
   }
 
   override fun observeViewModel() {
-    observe(mainViewModel.imagesLiveData, ::handleRecipesList)
+    observe(listViewModel.imagesLiveData, ::handleRecipesList)
   }
 
   private fun handleRecipesList(status: Resource<Images>) {
