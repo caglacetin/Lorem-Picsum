@@ -13,7 +13,7 @@
       android:supportsRtl="true"
       android:theme="@style/Theme.LoremPicsum">
     <activity
-        android:name=".ui.ImageListActivity"
+        android:name=".ui.imagelist.ImageListActivity"
         android:exported="true">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />

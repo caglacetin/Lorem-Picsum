@@ -1,4 +1,4 @@
-package com.caglacetin.lorempicsum.ui
+package com.caglacetin.lorempicsum.ui.imagelist
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

@@ -16,3 +16,9 @@ sealed class Resource<T>(
     }
   }
 }
+
+sealed class Status {
+  object Content : Status()
+  data class Error(val exception: Int?) : Status()
+  object Loading : Status()
+}
