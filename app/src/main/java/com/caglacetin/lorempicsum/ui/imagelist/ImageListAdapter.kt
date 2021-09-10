@@ -12,7 +12,7 @@ import javax.inject.Inject
 class ImageListAdapter @Inject constructor() : RecyclerView.Adapter<ImageItemViewHolder>() {
 
   private val imageList: MutableList<ImageItem> = mutableListOf()
-  var itemClicked: ((id: Int) -> Unit)? = null
+  var itemClicked: ((imageItem: ImageItem) -> Unit)? = null
 
   fun setImages(images: List<ImageItem>) {
     imageList.addAll(images)
@@ -36,16 +36,16 @@ class ImageListAdapter @Inject constructor() : RecyclerView.Adapter<ImageItemVie
 
   override fun getItemCount(): Int = imageList.size
 
-  class ImageItemViewHolder(private val binding: ItemImageBinding) :
+  inner class ImageItemViewHolder(private val binding: ItemImageBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(imageItem: ImageItem) {
       with(binding) {
         viewState = ImageItemViewState(imageItem)
         executePendingBindings()
-        /*itemView.setOnClickListener {
-          itemClicked?.invoke(postItem.id)
-        }*/
+        itemView.setOnClickListener {
+          itemClicked?.invoke(imageItem)
+        }
       }
     }
   }

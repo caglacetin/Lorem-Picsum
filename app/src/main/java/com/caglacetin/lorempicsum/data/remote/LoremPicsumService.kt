@@ -9,4 +9,7 @@ interface LoremPicsumService {
   @GET("/v2/list")
   suspend fun fetchImages(): Response<List<ImageItem>>
 
+  @GET("/id/list")
+  suspend fun fetchImageDetail(): Response<ImageItem>
+
 }

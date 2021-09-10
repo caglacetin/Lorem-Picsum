@@ -1,5 +1,6 @@
 package com.caglacetin.lorempicsum.ui.imagelist
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -9,9 +10,11 @@ import com.caglacetin.lorempicsum.common.Resource.Loading
 import com.caglacetin.lorempicsum.common.Resource.Success
 import com.caglacetin.lorempicsum.common.Status
 import com.caglacetin.lorempicsum.common.observe
+import com.caglacetin.lorempicsum.data.response.ImageItem
 import com.caglacetin.lorempicsum.data.response.Images
 import com.caglacetin.lorempicsum.databinding.ActivityImageListBinding
 import com.caglacetin.lorempicsum.ui.base.BaseActivity
+import com.caglacetin.lorempicsum.ui.imagedetail.ImageDetailActivity
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -43,6 +46,10 @@ class ImageListActivity: BaseActivity() {
       adapter = imageListAdapter
       layoutManager = linearLayoutManager
     }
+
+    imageListAdapter.itemClicked = {
+      navigateToDetailScreen(it)
+    }
   }
 
   override fun observeViewModel() {
@@ -63,4 +70,12 @@ class ImageListActivity: BaseActivity() {
     }
   }
 
+  private fun navigateToDetailScreen(item: ImageItem) {
+      val nextScreenIntent = Intent(this, ImageDetailActivity::class.java)
+        .apply { putExtra(IMAGE_ITEM_KEY, item) }
+      startActivity(nextScreenIntent)
+  }
+
 }
+
+const val IMAGE_ITEM_KEY = "IMAGE_ITEM_KEY"

@@ -21,6 +21,12 @@ class ImageListViewModel @Inject constructor(
   private val imagesLiveDataPrivate = MutableLiveData<Resource<Images>>()
   val imagesLiveData: LiveData<Resource<Images>> get() = imagesLiveDataPrivate
 
+  private val imageDetailPrivate = MutableLiveData<ImageItem>()
+  val openImageDetail: LiveData<ImageItem> get() = imageDetailPrivate
+
+  fun openImageDetail(imageItem: ImageItem) {
+    imageDetailPrivate.value = imageItem
+  }
 
   fun getImages() {
     viewModelScope.launch {
