@@ -8,8 +8,8 @@
         name="viewState"
         type="com.caglacetin.lorempicsum.ui.imagedetail.ImageDetailViewState"
         />
-
   </data>
+
   <androidx.constraintlayout.widget.ConstraintLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent"
@@ -17,25 +17,89 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_image_detail"
-        app:imageUrl="@{viewState.grayscaleImage}"
+        app:imageUrl="@{viewState.originalImage}"
         tools:src="@tools:sample/backgrounds/scenic"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="@dimen/height_image"
         android:scaleType="centerCrop"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         />
 
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/mtg_imagetype_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_16"
+        app:singleSelection="true"
+        app:layout_constraintTop_toBottomOf="@+id/iv_image_detail"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+      <Button
+          android:id="@+id/tb_original_image"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/original"
+          style="?attr/materialButtonStyle"
+          />
+
+      <Button
+          android:id="@+id/tb_grayscale_image"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/grayscale"
+          style="?attr/materialButtonOutlinedStyle"
+          />
+
+      <Button
+          android:id="@+id/tb_blur_image"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/blur"
+          style="?attr/materialButtonToggleGroupStyle"
+          />
+
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_detail_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/image_details"
+        android:layout_margin="@dimen/dp_16"
+        app:layout_constraintTop_toBottomOf="@+id/mtg_imagetype_detail"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Image Details"
+        android:textColor="@color/purple_200"
+        android:textSize="30sp"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_author_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@{viewState.author}"
-        android:layout_margin="@dimen/dp_16"
-        app:layout_constraintTop_toBottomOf="@+id/iv_image_detail"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_16"
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_detail"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:text="author"
-        android:textSize="40sp"
+        tools:text="Alejandro"
+        android:textColor="@color/purple_500"
+        android:textSize="20sp"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_dimension_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{viewState.dimensions}"
+        android:layout_marginStart="@dimen/dp_16"
+        app:layout_constraintTop_toBottomOf="@+id/tv_author_detail"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="300 X 500"
+        android:textColor="@color/purple_500"
+        android:textSize="20sp"
         />
 
   </androidx.constraintlayout.widget.ConstraintLayout>

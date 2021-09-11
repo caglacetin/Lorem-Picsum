@@ -2,6 +2,8 @@ package com.caglacetin.lorempicsum.ui.imagedetail
 
 import android.os.Bundle
 import androidx.activity.viewModels
+import com.caglacetin.lorempicsum.R
+import com.caglacetin.lorempicsum.common.ImageBindingAdapter.setImageUrl
 import com.caglacetin.lorempicsum.common.observe
 import com.caglacetin.lorempicsum.data.response.ImageItem
 import com.caglacetin.lorempicsum.databinding.ActivityImageDetailBinding
@@ -27,11 +29,22 @@ class ImageDetailActivity: BaseActivity() {
     setContentView(view)
   }
 
+  private fun listenToogleButtons(imageItem: ImageItem) {
+    binding.mtgImagetypeDetail.addOnButtonCheckedListener { group, checkedId, isChecked ->
+      when (checkedId) {
+        R.id.tb_original_image -> setImageUrl(binding.ivImageDetail, imageItem.downloadUrl)
+        R.id.tb_grayscale_image -> setImageUrl(binding.ivImageDetail,"${imageItem.downloadUrl}/?grayscale")
+        R.id.tb_blur_image -> setImageUrl(binding.ivImageDetail,"${imageItem.downloadUrl}/?blur=10")
+      }
+    }
+  }
+
   override fun observeViewModel() {
     observe(viewModel.imageData, ::initializeView)
   }
 
   private fun initializeView(imageItem: ImageItem) {
     binding.viewState = ImageDetailViewState(imageItem)
+    listenToogleButtons(imageItem)
   }
 }

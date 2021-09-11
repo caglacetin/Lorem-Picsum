@@ -8,8 +8,8 @@ data class ImageDetailViewState(
 
   fun getAuthor() = image.author
 
-  fun getBlurImage() = "${image.downloadUrl}?blur"
+  fun getDimensions() = "${image.width} x ${image.height}"
 
-  fun getGrayscaleImage() = "${image.downloadUrl}?grayscale"
+  fun getOriginalImage() = image.downloadUrl
 
 }
