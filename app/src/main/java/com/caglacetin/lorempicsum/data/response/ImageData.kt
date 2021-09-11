@@ -5,7 +5,7 @@ import com.squareup.moshi.Json
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class ImageItem(
+data class ImageData(
   val id: String = "",
   val author: String = "",
   val width: Int = 0,

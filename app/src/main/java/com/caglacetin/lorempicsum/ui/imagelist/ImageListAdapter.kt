@@ -4,17 +4,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.caglacetin.lorempicsum.R
 import com.caglacetin.lorempicsum.common.inflate
-import com.caglacetin.lorempicsum.data.response.ImageItem
+import com.caglacetin.lorempicsum.data.response.ImageData
 import com.caglacetin.lorempicsum.databinding.ItemImageBinding
 import com.caglacetin.lorempicsum.ui.imagelist.ImageListAdapter.ImageItemViewHolder
 import javax.inject.Inject
 
 class ImageListAdapter @Inject constructor() : RecyclerView.Adapter<ImageItemViewHolder>() {
 
-  private val imageList: MutableList<ImageItem> = mutableListOf()
-  var itemClicked: ((imageItem: ImageItem) -> Unit)? = null
+  private val imageList: MutableList<ImageData> = mutableListOf()
+  var itemClicked: ((imageItem: ImageData) -> Unit)? = null
 
-  fun setImages(images: List<ImageItem>) {
+  fun setImages(images: List<ImageData>) {
     imageList.addAll(images)
     notifyDataSetChanged()
   }
@@ -39,7 +39,7 @@ class ImageListAdapter @Inject constructor() : RecyclerView.Adapter<ImageItemVie
   inner class ImageItemViewHolder(private val binding: ItemImageBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(imageItem: ImageItem) {
+    fun bind(imageItem: ImageData) {
       with(binding) {
         viewState = ImageItemViewState(imageItem)
         executePendingBindings()

@@ -1,24 +1,24 @@
 package com.caglacetin.lorempicsum.common
 
-sealed class Resource<T>(
-  val data: T? = null,
-  val errorCode: Int? = null
-) {
-  class Success<T>(data: T) : Resource<T>(data)
-  class Loading<T>(data: T? = null) : Resource<T>(data)
-  class DataError<T>(errorCode: Int) : Resource<T>(null, errorCode)
+// references :
+// https://developer.android.com/jetpack/docs/guide#addendum
 
-  override fun toString(): String {
-    return when (this) {
-      is Success<*> -> "Success[data=$data]"
-      is DataError -> "Error[exception=$errorCode]"
-      is Loading<T> -> "Loading"
-    }
+sealed class Resource<out T> {
+  class Success<T>(val data: T) : Resource<T>()
+  class DataError(val exception: Throwable) : Resource<Nothing>()
+  object Loading : Resource<Nothing>()
+}
+
+inline fun <T, R> Resource<T>.map(transform: (T) -> R): Resource<R> {
+  return when (this) {
+    is Resource.Success -> Resource.Success(transform(data))
+    is Resource.DataError -> Resource.DataError(exception)
+    is Resource.Loading -> Resource.Loading
   }
 }
 
 sealed class Status {
   object Content : Status()
-  data class Error(val exception: Int?) : Status()
+  data class Error(val exception: Throwable) : Status()
   object Loading : Status()
 }
