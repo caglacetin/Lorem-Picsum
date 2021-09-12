@@ -1,4 +1,5 @@
 **Application Architecture**
+
 - MVVM(Model-View-ViewModel) architecture with applying separation of concern by layers.
 
 - Data Layer - includes network process and local and remote data repositories. 
@@ -6,6 +7,7 @@
 - UI Layer - includes Views(activity, fragment), ViewModels, ViewStates.
 
 **Tech Stack**
+
 - Retrofit - Turns your HTTP API into a Java interface.
 - Moshi - A converter for serialization to and from JSON.
 - Kotlin Coroutines - Used for long-running tasks.
