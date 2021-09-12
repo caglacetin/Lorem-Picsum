@@ -1,9 +1,9 @@
 package com.caglacetin.lorempicsum.ui.imagelist
 
-import com.caglacetin.lorempicsum.data.response.ImageData
+import com.caglacetin.lorempicsum.ui.ImageItem
 
 data class ImageItemViewState (
-  private val imageItem: ImageData
+  private val imageItem: ImageItem
   )
 {
   fun getImageUrl() = imageItem.downloadUrl

@@ -10,8 +10,8 @@ import com.caglacetin.lorempicsum.common.Resource.DataError
 import com.caglacetin.lorempicsum.common.Resource.Loading
 import com.caglacetin.lorempicsum.common.Resource.Success
 import com.caglacetin.lorempicsum.common.observe
-import com.caglacetin.lorempicsum.data.response.ImageData
 import com.caglacetin.lorempicsum.databinding.ActivityImageListBinding
+import com.caglacetin.lorempicsum.ui.ImageItem
 import com.caglacetin.lorempicsum.ui.base.BaseActivity
 import com.caglacetin.lorempicsum.ui.imagedetail.ImageDetailActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -59,7 +59,7 @@ class ImageListActivity: BaseActivity() {
     observe(listViewModel.imagesLiveData, ::handleImageList)
   }
 
-  private fun handleImageList(status: Resource<List<ImageData>>) {
+  private fun handleImageList(status: Resource<List<ImageItem>>) {
     binding.viewState = ImageListViewState(status)
     when (status) {
       is Loading -> ImageListViewState(Loading)
@@ -71,7 +71,7 @@ class ImageListActivity: BaseActivity() {
     }
   }
 
-  private fun navigateToDetailScreen(item: ImageData) {
+  private fun navigateToDetailScreen(item: ImageItem) {
       val nextScreenIntent = Intent(this, ImageDetailActivity::class.java)
         .apply { putExtra(IMAGE_DETAIL_KEY, item) }
       startActivity(nextScreenIntent)
