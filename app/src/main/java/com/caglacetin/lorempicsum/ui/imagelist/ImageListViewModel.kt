@@ -32,7 +32,7 @@ class ImageListViewModel @Inject constructor(
       imagesLiveDataPrivate.value = Resource.Loading
       usaCase.fetchImages(page).collect {
         imagesLiveDataPrivate.value = it
-        }
+      }
     }
   }
 

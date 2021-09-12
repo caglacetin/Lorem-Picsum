@@ -1,7 +1,7 @@
-package com.caglacetin.lorempicsum
+package com.caglacetin.lorempicsum.list
 
+import com.caglacetin.lorempicsum.util.DummyImageItem.createDummyImageItem
 import com.caglacetin.lorempicsum.common.Resource
-import com.caglacetin.lorempicsum.ui.ImageItem
 import com.caglacetin.lorempicsum.ui.imagelist.ImageListViewState
 import com.google.common.truth.Truth
 import org.junit.Test
@@ -60,12 +60,4 @@ class ImageListViewStateTest {
     Truth.assertThat(actualResult).isTrue()
   }
 
-  private fun createDummyImageItem(): ImageItem {
-    return ImageItem(
-      author = "Paul Jarvis",
-      width = 5616,
-      height = 3744,
-      downloadUrl = "https://picsum.photos/id/1004/5616/3744"
-    )
-  }
 }
