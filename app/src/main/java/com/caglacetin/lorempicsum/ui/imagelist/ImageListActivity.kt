@@ -9,7 +9,6 @@ import com.caglacetin.lorempicsum.common.Resource
 import com.caglacetin.lorempicsum.common.Resource.DataError
 import com.caglacetin.lorempicsum.common.Resource.Loading
 import com.caglacetin.lorempicsum.common.Resource.Success
-import com.caglacetin.lorempicsum.common.Status
 import com.caglacetin.lorempicsum.common.observe
 import com.caglacetin.lorempicsum.data.response.ImageData
 import com.caglacetin.lorempicsum.databinding.ActivityImageListBinding
@@ -61,10 +60,14 @@ class ImageListActivity: BaseActivity() {
   }
 
   private fun handleImageList(status: Resource<List<ImageData>>) {
+    binding.viewState = ImageListViewState(status)
     when (status) {
-      is Loading -> ImageListViewState(Status.Loading)
-      is Success -> status.data.let { imageListAdapter.setImages(it) }
-      is DataError -> Status.Error(status.exception)
+      is Loading -> ImageListViewState(Loading)
+      is Success -> {
+        ImageListViewState(Success(status.data))
+        status.data.let { imageListAdapter.setImages(it) }
+      }
+      is DataError -> ImageListViewState(DataError(status.exception))
     }
   }
 

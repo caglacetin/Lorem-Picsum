@@ -19,6 +19,6 @@ class RequestInterceptor @Inject constructor() : Interceptor {
 
   companion object {
     const val LIMIT_KEY = "limit"
-    const val LIMIT_VALUE = "20"
+    const val LIMIT_VALUE = "10"
   }
 }
